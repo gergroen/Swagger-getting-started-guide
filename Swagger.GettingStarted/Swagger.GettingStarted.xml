@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Swagger.GettingStarted</name>
+    </assembly>
+    <members>
+        <member name="M:Swagger.GettingStarted.CoffeeController.Test">
+            <summary>
+            Get coffee
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
