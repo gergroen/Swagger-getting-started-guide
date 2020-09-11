@@ -9,10 +9,9 @@ namespace Swagger.GettingStarted
 {
     public class Startup
     {
-         public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen(c => {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

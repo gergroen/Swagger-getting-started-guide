@@ -14,10 +14,108 @@ You can find the source code of this post on: <a href="https://github.com/gergro
 <br />
 <h3>Post summary</h3>
 <li><a href="#InstallingNuGet">Installing NuGet</a></li>
+<li><a href="#CreateDto">Create dto</a></li>
+<li><a href="#CreateApiController">Create api controller</a></li>
+<li><a href="#ConfigureServicesAndApplication">Configure services and application</a></li>
 <br />
 <h3><a name="InstallingNuGet"></a>Installing NuGet</h3>
-First create a .Net core console project and install the next nuget packages.
-<li><a href="https://www.nuget.org/packages/Serilog">Serilog</a></li>
+First create a empty ASP.NET Core Web application project and install the next nuget packages.
+<li><a href="https://www.nuget.org/packages/Swashbuckle.AspNetCore">Swashbuckle.AspNetCore</a></li>
+<br />
+<h3><a name="CreateDto"></a>Create dto</h3>
+<pre class="prettyprint lang-cs">namespace Swagger.GettingStarted
+{
+    public class CoffeeDto
+    {
+        public string Name { get; set; } = string.Empty;
+    }
+}
+</pre>
+<br />
+<h3><a name="CreateApiController"></a>Create api controller</h3>
+<pre class="prettyprint lang-cs">using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Swagger.GettingStarted
+{
+    /// <summary>
+    /// Coffee controller
+    /// </summary>
+    [Produces("application/json")]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CoffeeController : ControllerBase
+    {
+        /// <summary>
+        /// Get all coffees
+        /// </summary>
+        /// <returns></returns>
+        [Route("")]
+        [HttpGet]
+        public List<CoffeeDto> GetAll()
+        {
+            return new List<CoffeeDto>
+            {
+                new CoffeeDto{ Name = "Americano"},
+                new CoffeeDto{ Name = "Latte"},
+                new CoffeeDto{ Name = "Cappuccino"},
+                new CoffeeDto{ Name = "Espresso"},
+            };
+        }
+    }
+}
+</pre>
+<br />
+<h3><a name="ConfigureServicesAndApplication"></a>Configure services and application</h3>
+<pre class="prettyprint lang-cs">using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Swagger.GettingStarted
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddSwaggerGen(c => {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+}
+</pre>
+<br />
+
+
+
+
+
+
+
+
+
+
+
 
 <h3>Useful links:</h3>
 <a href="https://github.com/gergroen/Swagger-getting-started-guide">Source code</a><br />
