@@ -38,18 +38,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Swagger.GettingStarted
 {
-    /// <summary>
+    /// &lt;summary&gt;
     /// Coffee controller
-    /// </summary>
+    /// &lt;/summary&gt;
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CoffeeController : ControllerBase
     {
-        /// <summary>
+        /// &lt;summary&gt;
         /// Get all coffees
-        /// </summary>
-        /// <returns></returns>
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
         [Route("")]
         [HttpGet]
         public List<CoffeeDto> GetAll()
