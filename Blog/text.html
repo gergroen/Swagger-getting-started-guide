@@ -70,7 +70,8 @@ namespace Swagger.GettingStarted
 </pre>
 <br />
 <h3><a name="ConfigureServicesAndApplication"></a>Configure services and application</h3>
-Then we need to configure the services with AddSwaggerGen where we include the xml documentation file. <br />
+Enable "xml documentation file" in the project -> properties -> build -> output.<br /> 
+Then we need to configure in the Startup class the services with AddSwaggerGen where we include the xml documentation file. <br />
 Configure the application with UseSwagger to generate the openapi json and UseSwaggerUI for the swagger documentation page.
 <pre class="prettyprint lang-cs">using System;
 using System.IO;
@@ -110,18 +111,11 @@ namespace Swagger.GettingStarted
 }
 </pre>
 <br />
-
 <h3><a name="SwaggerPage"></a>Swagger page</h3>
+Run the application and add /swagger to the url in the browser to show the swagger page.<br />
+On this page is shown all the controllers, the operations and the dto's of the api.<br />
 <img border="0" src="https://github.com/gergroen/Swagger-getting-started-guide/raw/master/Blog/Screenshots/SwaggerPage.png" />
 <br />
-
-
-
-
-
-
-
-
 <h3>Useful links:</h3>
 <a href="https://github.com/gergroen/Swagger-getting-started-guide">Source code</a><br />
 <a href="https://swagger.io/docs/" target="_blank">Swagger documentation</a>
