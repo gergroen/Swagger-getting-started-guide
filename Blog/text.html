@@ -24,6 +24,7 @@ First create a empty ASP.NET Core Web application project and install the next n
 <li><a href="https://www.nuget.org/packages/Swashbuckle.AspNetCore">Swashbuckle.AspNetCore</a></li>
 <br />
 <h3><a name="CreateDto"></a>Create dto</h3>
+Create a dto class like this CoffeeDto class.
 <pre class="prettyprint lang-cs">namespace Swagger.GettingStarted
 {
     public class CoffeeDto
@@ -34,6 +35,7 @@ First create a empty ASP.NET Core Web application project and install the next n
 </pre>
 <br />
 <h3><a name="CreateApiController"></a>Create api controller</h3>
+Add a api controller class for your dto. And add comments to the operations.
 <pre class="prettyprint lang-cs">using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,6 +70,8 @@ namespace Swagger.GettingStarted
 </pre>
 <br />
 <h3><a name="ConfigureServicesAndApplication"></a>Configure services and application</h3>
+Then we need to configure the services with AddSwaggerGen where we include the xml documentation file. <br />
+Configure the application with UseSwagger to generate the openapi json and UseSwaggerUI for the swagger documentation page.
 <pre class="prettyprint lang-cs">using System;
 using System.IO;
 using System.Reflection;
